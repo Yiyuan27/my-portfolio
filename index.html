@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="个人介绍、教育经历、专业技能与项目经历。">
+    <title>About Me | Portfolio</title>
+    <style>
+        :root {
+            --bg: #fdfdfd;
+            --text: #1a1a1a;
+            --accent: #4a5d4e;
+            --gray: #888;
+            --line: #deded8;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Hiragino Mincho ProN", "Source Serif Pro", "Songti SC", serif;
+            line-height: 1.7;
+        }
+
+        .global-nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 24px 8%;
+            background: rgba(253, 253, 253, 0.94);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            color: var(--text);
+            font: 600 13px/1.4 Arial, sans-serif;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: clamp(16px, 3vw, 40px); }
+
+        .nav-links a {
+            color: var(--gray);
+            font: 12px/1.4 Arial, sans-serif;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--text); }
+
+        main { padding: 0 8% 100px; }
+
+        .about-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+            align-items: center;
+            gap: clamp(40px, 8vw, 96px);
+            max-width: 1100px;
+            min-height: 76vh;
+            margin: 0 auto;
+            padding: 72px 0 54px;
+        }
+
+        .eyebrow {
+            margin: 0 0 14px;
+            color: var(--accent);
+            font: 12px/1.5 Arial, sans-serif;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .about-title {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .about-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 12px 24px;
+            margin-bottom: 28px;
+        }
+
+        .about-education {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 18px;
+            margin: 0;
+            color: #555;
+            font-size: 0.88rem;
+        }
+
+        .about-text {
+            margin: 0 0 10px;
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: #efefef;
+        }
+
+        .about-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .storyline {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .storyline-header {
+            margin: 0 0 34px;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .storyline-group {
+            display: grid;
+            grid-template-columns: 100px minmax(0, 1fr);
+            gap: 22px;
+            margin-bottom: 34px;
+        }
+
+        .storyline-year {
+            color: var(--accent);
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .storyline-items {
+            display: grid;
+            gap: 13px;
+            padding-left: 20px;
+            border-left: 1px solid var(--line);
+        }
+
+        .storyline-item { color: #444; }
+
+        .footer-link {
+            display: flex;
+            justify-content: center;
+            padding-top: 48px;
+        }
+
+        .footer-link a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: #fff;
+            font: 12px/1.5 Arial, sans-serif;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .footer-link a:hover {
+            background: #35483b;
+            transform: translateY(-2px);
+        }
+
+        .footer-link a:focus-visible {
+            outline: 3px solid #9bb3a1;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 720px) {
+            .global-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 18px 6%;
+            }
+            .brand { font-size: 11px; }
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 12px;
+            }
+            .nav-links a { font-size: 10px; }
+            main { padding: 0 6% 72px; }
+            .about-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                min-height: auto;
+                padding: 48px 0 56px;
+            }
+            .about-photo { width: min(100%, 360px); aspect-ratio: 5 / 4; }
+            .storyline { padding-top: 38px; }
+            .storyline-group { grid-template-columns: 62px minmax(0, 1fr); gap: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="global-nav" aria-label="主导航">
+        <a class="brand" href="index.html">PERSONAL PORTFOLIO</a>
+        <div class="nav-links">
+            <a class="active" href="index.html" aria-current="page">ABOUT ME</a>
+            <a href="portfolios.html">PORTFOLIOS</a>
+            <a href="portfolios.html#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="about-section" aria-labelledby="about-title">
+            <div class="about-content">
+                <p class="eyebrow">About Me</p>
+                <div class="about-heading">
+                    <h1 class="about-title" id="about-title">关于我</h1>
+                    <p class="about-education">
+                        <span><strong>教育经历：</strong>浙江传媒学院 | 广告学</span>
+                        <span><strong>毕业时间：</strong>2027.6</span>
+                    </p>
+                </div>
+                <p class="about-text">· 数据分析：Excel、SQL、SPSS（可进行基础数据整理、分析与可视化）</p>
+                <p class="about-text">· 内容制作：PS、PR、剪映、可画、秀米（可独立完成海报、图文、短视频内容）</p>
+                <p class="about-text">· 策划及执行：活动策划、跨部门协作、项目推进</p>
+                <p class="about-text">· 文案能力：擅长网感文案、情感叙事、品牌沟通文案</p>
+                <p class="about-text">· AI 应用开发：借助 AI 搭建网站、设计页面，将创意转化为可访问的线上作品</p>
+            </div>
+            <div class="about-photo">
+                <img src="./assets/about-photo.jpg" alt="个人照片" fetchpriority="high">
+            </div>
+        </section>
+
+        <section class="storyline" aria-labelledby="storyline-title">
+            <h2 class="storyline-header" id="storyline-title">Storyline</h2>
+            <div class="storyline-group">
+                <div class="storyline-year">2026</div>
+                <div class="storyline-items">
+                    <div class="storyline-item">《乘风2026》</div>
+                    <div class="storyline-item">《桐香·猪肉》——品牌策划大赛全国二等奖</div>
+                    <div class="storyline-item">浙江东白农作品牌IP设计</div>
+                </div>
+            </div>
+            <div class="storyline-group">
+                <div class="storyline-year">2025</div>
+                <div class="storyline-items">
+                    <div class="storyline-item">趣多多品牌焕新</div>
+                    <div class="storyline-item">《脱口秀和Ta的朋友们》第二季</div>
+                    <div class="storyline-item">《民族万象》——会展策划大赛全国三等奖</div>
+                    <div class="storyline-item">《三福—潮生万象》——大学生广告大赛</div>
+                </div>
+            </div>
+            <div class="storyline-group">
+                <div class="storyline-year">2024</div>
+                <div class="storyline-items">
+                    <div class="storyline-item">赞意广告公司（4A）</div>
+                    <div class="storyline-item">《星盾宝》保险产品设计——互联网+创新创业大赛全国三等奖</div>
+                    <div class="storyline-item">《情绪的世界》——会展策划大赛省级三等奖</div>
+                    <div class="storyline-item">湖南人民广播电台</div>
+                    <div class="storyline-item">《爱与梦想，都要棋逢对手》乙游市场调查——市场调查大赛省级三等奖</div>
+                </div>
+            </div>
+            <div class="storyline-group">
+                <div class="storyline-year">2023</div>
+                <div class="storyline-items">
+                    <div class="storyline-item">墨尔本大学全球就业力提升游学项目</div>
+                    <div class="storyline-item">学院奖《爱要说出来》</div>
+                </div>
+            </div>
+            <div class="footer-link"><a href="portfolios.html">VIEW SELECTED WORKS</a></div>
+        </section>
+    </main>
+</body>
+</html>
